@@ -15,14 +15,14 @@ function querySchedule(info, callback) {
         if (!body) {
             body = '-1';
         }
-        var schedule = JSON.parse(body);
+        var scheduleData = JSON.parse(body);
         if (!err &&
             res.statusCode == 200 &&
-            schedule.hasOwnProperty('httpstatus') &&
-            schedule['httpstatus'] == 200 &
-            schedule.hasOwnProperty('status') &&
-            schedule['status']) {
-            callback(null, schedule.data.data);
+            scheduleData.hasOwnProperty('httpstatus') &&
+            scheduleData['httpstatus'] == 200 &
+            scheduleData.hasOwnProperty('status') &&
+            scheduleData['status']) {
+            callback(null, handleSchedule(info.tripDate, scheduleData.data.data));
         } else {
             callback({
                 err: err,
@@ -31,6 +31,24 @@ function querySchedule(info, callback) {
             });
         }
     });
+}
+
+function handleSchedule(date, schedule) {
+    var lastArrive = schedule[0].start_time;
+    var str = date + "T" + lastArrive + "+08:00";
+    var date = new Date(str);
+    for (var i = 1; i < schedule.length; i++) {
+        var info = schedule[i];
+        var num = info.arrive_time.split(':');
+        if (info.arrive_time < lastArrive) {
+            date.setDate(date.getDate() + 1);
+        }
+        date.setHours(num[0]);
+        date.setMinutes(num[1]);
+        info['timeStamp'] = date.getTime();
+        lastArrive = info.arrive_time;
+    }
+    return schedule;
 }
 
 module.exports = {
