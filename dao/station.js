@@ -1,8 +1,8 @@
 var db = require('./database');
 
 var stationSql = {
-    insert: 'INSERT INTO station(name,telecode,pinyin_full, pinyin_short) Values(?,?,?,?);',
-    selectByName: 'SELECT * FROM station WHERE name=?;',
+    insert: 'INSERT INTO station(name, telecode, pinyin_full, pinyin_short, update_at) Values(?, ?, ?, ?, ?);',
+    selectByName: 'SELECT * FROM station WHERE name=? ORDER BY update_at desc;',
 };
 
 var station = {

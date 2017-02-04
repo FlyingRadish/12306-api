@@ -1,8 +1,8 @@
 var db = require('./database');
 
 var trainSql = {
-    insert: 'INSERT INTO train(trip_date, train, trip_from, trip_to, train_no) Values(?,?,?,?,?);',
-    select: 'SELECT * FROM train WHERE train=? AND trip_date=?'
+    insert: 'INSERT INTO train(trip_date, train, trip_from, trip_to, train_no, update_at) Values(?, ?, ?, ?, ?, ?);',
+    select: 'SELECT * FROM train WHERE train=? AND trip_date=? ORDER BY update_at desc;'
 };
 
 var train = {
