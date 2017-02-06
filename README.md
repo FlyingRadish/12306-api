@@ -19,6 +19,9 @@ var pool = mysql.createPool({
     port: 3306  //端口
 });
 ```
+## 导入数据
+分别下载[车次数据](https://kyfw.12306.cn/otn/resources/js/query/train_list.js)和[车站数据](https://kyfw.12306.cn/otn/resources/js/framework/station_name.js)，按照表结构导入数据库。
+自动导入数据的功能将在未来加入。
 ## 运行
 ```
 npm start
