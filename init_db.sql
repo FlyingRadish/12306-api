@@ -6,7 +6,7 @@ create table station (
   telecode varchar(20),
   pinyin_full varchar(60),
   pinyin_short varchar(20),
-  update_at int unsgined
+  update_at int unsigned
 );
 
 create table train (
@@ -16,5 +16,5 @@ create table train (
   trip_from varchar(20),
   trip_to varchar(20),
   train_no varchar(60),
-  update_at int unsgined
+  update_at int unsigned
 );
