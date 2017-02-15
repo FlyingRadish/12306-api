@@ -1,4 +1,4 @@
-create database 12306api;
+create database 12306api CHARACTER SET utf8;
 use 12306api;
 create table station (
   id int auto_increment primary key,
@@ -7,7 +7,7 @@ create table station (
   pinyin_full varchar(60),
   pinyin_short varchar(20),
   update_at int unsigned
-);
+) CHARACTER SET utf8;
 
 create table train (
   id int auto_increment primary key,
@@ -17,4 +17,4 @@ create table train (
   trip_to varchar(20),
   train_no varchar(60),
   update_at int unsigned
-);
+) CHARACTER SET utf8;
